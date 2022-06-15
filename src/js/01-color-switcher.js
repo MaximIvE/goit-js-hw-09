@@ -21,10 +21,9 @@ function stopColor(){
     clearInterval(timerId);
 };
 
-//Функція, яка змінює колір фону <body>
+//Функція, яка змінює колір фону для <body>
 function colorChange(){
-    const color = getRandomHexColor();
-    bodyEl.style.backgroundColor = color;
+    bodyEl.style.backgroundColor = getRandomHexColor();
 };
 
 //Функціця, яка генерує випадковий колір
