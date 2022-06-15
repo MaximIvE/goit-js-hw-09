@@ -21,7 +21,6 @@ const options = {
         timeStart = new Date().getTime();
         if (timeEnd > timeStart){
             btnStart.disabled = false;
-            inputEl.disabled = true;
         }else{
             Notiflix.Notify.failure('Please choose a date in the future');
             return;
@@ -38,6 +37,7 @@ btnStart.addEventListener('click', runTimer);
 //Функція запускає таймер
 function runTimer(){
     btnStart.disabled = true;
+    inputEl.disabled = true;
     timerId = setInterval(callBackTime, 1000);
 };
 
