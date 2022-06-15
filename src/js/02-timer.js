@@ -1,13 +1,14 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
 const inputEl = document.querySelector('#datetime-picker');
 const btnStart = document.querySelector('button[data-start]');
 const NumbersEl = document.querySelectorAll('.value');
 
-let timeEnd = new Date().getTime() + 1000*(25+17*60+15*3600+18*3600*24);
-let timeStart = 0;
-let timerId = 0;
+let timeEnd = null;
+let timeStart = null;
+let timerId = null;
 
 btnStart.disabled = true;
 const options = {
@@ -22,7 +23,7 @@ const options = {
             btnStart.disabled = false;
             inputEl.disabled = true;
         }else{
-            alert('Please choose a date in the future');
+            Notiflix.Notify.failure('Please choose a date in the future');
             return;
         }
     },
@@ -44,7 +45,7 @@ function runTimer(){
 function callBackTime(){
     timeStart = new Date().getTime();
     if (timeEnd <= timeStart){
-        alert('Action!!!');
+        Notiflix.Notify.success('Action!!!');
         clearInterval(timerId);
         inputEl.disabled = false;
         return;
@@ -52,7 +53,6 @@ function callBackTime(){
     const time = timeEnd - timeStart;
     const timeObj = pad(convertMs(time));
     drawsTinme(timeObj);
-    
 };
 
 // Функція перетворює мілісекунди в кількість секунд, хвилин, годин, днів, повертає об'єкт чисел
